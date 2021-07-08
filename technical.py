@@ -109,7 +109,14 @@ def Scrappy(tickerinput):
 
     st.subheader('Moving Average Convergence Divergence (MACD)')
 
-    numYearMACD = 2
+    numYearMACD_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+    query_params2 = st.experimental_get_query_params()
+    default = int(query_params2["numYearMACD"][0]) if "numYearMACD" in query_params2 else 1
+    numYearMACD = st.selectbox(
+        " Insert period (Year):  ",
+        numYearMACD_list1,
+        index=default
+    )
 
     startMACD = dt.datetime.today() - dt.timedelta(numYearMACD * 365)
     endMACD = dt.datetime.today()
@@ -185,7 +192,7 @@ def Scrappy(tickerinput):
         query_params4 = st.experimental_get_query_params()
         default = int(query_params4["numYearBoll"][0]) if "numYearBoll" in query_params4 else 1
         numYearBoll = st.selectbox(
-            "Insert period (Year): ",
+            "Insert period (Year) ",
             numYearBoll_list1,
             index=default
         )
@@ -195,7 +202,7 @@ def Scrappy(tickerinput):
         query_params4 = st.experimental_get_query_params()
         default = int(query_params4["windowSizeBoll"][0]) if "windowSizeBoll" in query_params4 else 19
         windowSizeBoll= st.selectbox(
-            "Window Size (Day): ",
+            "Window Size (Day) ",
             windowSizeBoll_list2,
             index=default
         )
