@@ -90,7 +90,8 @@ def main():
     marketDF = pd.DataFrame(data=marketInfo, index=[0])
     st.table(marketDF)
     profile.Profile(input())
-    technical.Scrappy(input())
+    numYearMACD = st.number_input('Insert period (Year): ', min_value=1, max_value=10, value=2, key=2)
+    st.write(numYearMACD)
 
 
 
