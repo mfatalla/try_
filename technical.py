@@ -108,7 +108,14 @@ def Scrappy(tickerinput):
     st.plotly_chart(figMA, use_container_width=True)
 
     st.subheader('Moving Average Convergence Divergence (MACD)')
-    numYearMACD = st.number_input('Insert period (Year): ', min_value=1, max_value=10, value=2, key=2)
+    numYearMACD_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+    query_params = st.experimental_get_query_params()
+    default = int(query_params["numYearMACD"][0]) if "numYearMACD" in query_params else 1
+    numYearMACD = st.selectbox(
+        "Insert period (Year): ",
+        numYearMACD_list1,
+        index=default
+    )
 
     startMACD = dt.datetime.today() - dt.timedelta(numYearMACD * 365)
     endMACD = dt.datetime.today()
@@ -178,12 +185,26 @@ def Scrappy(tickerinput):
 
     st.subheader('Bollinger Band')
     coBoll1, coBoll2 = st.beta_columns(2)
-    with coBoll1:
-        numYearBoll = st.number_input('Insert period (Year): ', min_value=1, max_value=10, value=2, key=6)
+
+    with  coBoll1:
+        numYearBoll_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+        query_params = st.experimental_get_query_params()
+        default = int(query_params["numYearBoll"][0]) if "numYearBoll" in query_params else 1
+        numYearBoll = st.selectbox(
+            "Insert period (Year): ",
+            numYearBoll_list1,
+            index=default
+        )
 
     with coBoll2:
-        windowSizeBoll = st.number_input('Window Size (Day): ', min_value=5, max_value=500, value=20, key=7)
-
+        windowSizeBoll_list2 = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18,19,20]
+        query_params = st.experimental_get_query_params()
+        default = int(query_params["windowSizeBoll"][0]) if "windowSizeBoll" in query_params else 19
+        windowSizeBoll= st.selectbox(
+            "Window Size (Day): ",
+            windowSizeBoll_list2,
+            index=default
+        )
 
 
     startBoll = dt.datetime.today() - dt.timedelta(numYearBoll * 365)
