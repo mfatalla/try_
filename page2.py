@@ -4,6 +4,7 @@ import pandas as pd
 import datetime as dt
 import plotly.graph_objects as go
 import profile
+import technical
 
 
 
@@ -88,6 +89,7 @@ def main():
     marketDF = pd.DataFrame(data=marketInfo, index=[0])
     st.table(marketDF)
     profile.Profile(input())
+    technical.Scrappy(input())
 
 
 
