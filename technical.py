@@ -108,14 +108,8 @@ def Scrappy(tickerinput):
     st.plotly_chart(figMA, use_container_width=True)
 
     st.subheader('Moving Average Convergence Divergence (MACD)')
-    numYearMACD_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
-    query_params2 = st.experimental_get_query_params()
-    default = int(query_params2["numYearMACD"][0]) if "numYearMACD" in query_params2 else 1
-    numYearMACD = st.selectbox(
-        "Insert period (Year): ",
-        numYearMACD_list1,
-        index=default
-    )
+
+    numYearMACD = 2
 
     startMACD = dt.datetime.today() - dt.timedelta(numYearMACD * 365)
     endMACD = dt.datetime.today()
@@ -186,7 +180,7 @@ def Scrappy(tickerinput):
     st.subheader('Bollinger Band')
     coBoll1, coBoll2 = st.beta_columns(2)
 
-    with  coBoll1:
+    with coBoll1:
         numYearBoll_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
         query_params4 = st.experimental_get_query_params()
         default = int(query_params4["numYearBoll"][0]) if "numYearBoll" in query_params4 else 1
