@@ -90,6 +90,7 @@ def main():
     marketDF = pd.DataFrame(data=marketInfo, index=[0])
     st.table(marketDF)
     profile.Profile(input())
+    technical.Scrappy(input())
 
 
 

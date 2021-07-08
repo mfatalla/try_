@@ -7,6 +7,8 @@ import page2
 
 tickerinput = page2.input()
 
+
+
 def Scrappy(tickerinput):
     def calcMovingAverage(datatech, size):
         dftech = datatech.copy()
@@ -42,10 +44,24 @@ def Scrappy(tickerinput):
     coMA1, coMA2 = st.beta_columns(2)
 
     with coMA1:
-        numYearMA = st.number_input('Insert period (Year): ', min_value=1, max_value=10, value=2, key=0)
+        numYearMA_list1 = [1, 2, 3, 4, 5, 6, 7, 8, 10]
+        query_params = st.experimental_get_query_params()
+        default = int(query_params["numYearMA"][0]) if "numYearMA" in query_params else 1
+        numYearMA = st.selectbox(
+            "Insert period (Year): ",
+            numYearMA_list1,
+            index=default
+        )
 
     with coMA2:
-        windowSizeMA = st.number_input('Window Size (Day): ', min_value=5, max_value=500, value=20, key=1)
+        windowSizeMA_list2 = [1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16,17,18,19,20]
+        query_params = st.experimental_get_query_params()
+        default = int(query_params["windowSizeMA"][0]) if "windowSizeMA" in query_params else 19
+        windowSizeMA = st.selectbox(
+            "Window Size (Day): ",
+            windowSizeMA_list2,
+            index=default
+        )
 
     start_tech = dt.datetime.today() - dt.timedelta(numYearMA * 365)
     end_tech = dt.datetime.today()
@@ -167,6 +183,8 @@ def Scrappy(tickerinput):
 
     with coBoll2:
         windowSizeBoll = st.number_input('Window Size (Day): ', min_value=5, max_value=500, value=20, key=7)
+
+
 
     startBoll = dt.datetime.today() - dt.timedelta(numYearBoll * 365)
     endBoll = dt.datetime.today()
